@@ -1,0 +1,61 @@
+import pandas as pd
+import pdfquery
+from pdfquery.cache import FileCache
+
+fileList = ["7400.pdf", "7999.pdf", "8100.pdf", "1_8400.pdf", "8400_2.pdf",
+            "9000.pdf", "9200.pdf", "10499.pdf", "13000.pdf", "Max.pdf"]#, "15119.pdf",
+            #"15650.pdf", "17000.pdf", "Max.pdf"]#, "9100_1.pdf", "9100_2.pdf", "9100_3.pdf",
+            #"9100_4.pdf", "9100_5.pdf", "9100_6.pdf", "9100_7.pdf", "9220.pdf", "9367.pdf",
+            #"9570.pdf", "10300.pdf", "10640_1.pdf", "10640_2.pdf", "12400.pdf", "16000.pdf", "Max.pdf"]
+extracted = []
+
+for file in fileList:
+  pdf = pdfquery.PDFQuery(file)
+  pdf.load()
+  for num in range(0, 25):
+    extracted.append(pdf.extract( [
+     ('with_parent', 'LTPage[page_index="'+ str(num) +'"]'),
+     ('with_formatter', 'text'),
+
+     ('name1', 'LTTextLineHorizontal:in_bbox("41.5, 690.042, 140, 699.042")'),
+     ('email1', 'LTTextLineHorizontal:in_bbox("433.0, 675.822, 580, 684.822")'),
+
+     ('name2', 'LTTextLineHorizontal:in_bbox("41.5, 639.642, 140, 648.642")'),
+     ('email2', 'LTTextLineHorizontal:in_bbox("433.0, 625.422, 580.676, 634.422")'),
+
+     ('name3', 'LTTextLineHorizontal:in_bbox("41.5, 589.242, 140, 598.242")'),
+     ('email3', 'LTTextLineHorizontal:in_bbox("433.0, 575.022, 580.676, 584.022")'),
+
+     ('name4', 'LTTextLineHorizontal:in_bbox("41.5, 538.842, 140, 547.842")'),
+     ('email4', 'LTTextLineHorizontal:in_bbox("433.0, 524.622, 580.676, 533.622")'),
+
+     ('name5', 'LTTextLineHorizontal:in_bbox("41.5, 488.442, 140, 497.442")'),
+     ('email5', 'LTTextLineHorizontal:in_bbox("433.0, 474.222, 580.676, 483.222")'),
+
+     ('name6', 'LTTextLineHorizontal:in_bbox("41.5, 438.042, 140, 447.042")'),
+     ('email6', 'LTTextLineHorizontal:in_bbox("433.0, 423.822, 580.676, 432.822")'),
+
+     ('name7', 'LTTextLineHorizontal:in_bbox("41.5, 387.642, 140, 396.642")'),
+     ('email7', 'LTTextLineHorizontal:in_bbox("433.0, 373.422, 580.676, 382.422")'),
+
+     ('name8', 'LTTextLineHorizontal:in_bbox("41.5, 337.242, 140, 346.242")'),
+     ('email8', 'LTTextLineHorizontal:in_bbox("433.0, 323.022, 580.676, 332.022")'),
+
+     ('name9', 'LTTextLineHorizontal:in_bbox("41.5, 286.842, 140, 295.842")'),
+     ('email9', 'LTTextLineHorizontal:in_bbox("433.0, 272.622, 580.676, 281.622")'),
+
+     ('name10', 'LTTextLineHorizontal:in_bbox("41.5, 236.442, 140, 245.442")'),
+     ('email10', 'LTTextLineHorizontal:in_bbox("433.0, 222.222, 580.676, 231.222")'),
+
+     ('name11', 'LTTextLineHorizontal:in_bbox("41.5, 186.042, 140, 195.042")'),
+     ('email11', 'LTTextLineHorizontal:in_bbox("433.0, 171.822, 580.676, 180.822")'),
+
+     ('name12', 'LTTextLineHorizontal:in_bbox("41.5, 135.642, 140, 144.642")'),
+     ('email12', 'LTTextLineHorizontal:in_bbox("433.0, 121.422, 580.676, 130.422")'),
+
+    ]))
+
+
+with open('FamDollar.txt', 'w') as f:
+    for line in extracted:
+        f.write(f"{line}\n")
