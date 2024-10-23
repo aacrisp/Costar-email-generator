@@ -1,0 +1,19 @@
+import pandas as pd
+
+files = ["CostarExport.xlsx", "CostarExport (1).xlsx", "CostarExport (2).xlsx", "CostarExport (3).xlsx",
+         "CostarExport (4).xlsx", "CostarExport (5).xlsx", "CostarExport (6).xlsx",
+         "CostarExport (7).xlsx", "CostarExport (8).xlsx", "CostarExport (9).xlsx"]#,
+         #"CostarExport (10).xlsx", "CostarExport (11).xlsx", "CostarExport (12).xlsx",
+         #"CostarExport (13).xlsx", "CostarExport (15).xlsx"]#, "CostarExport (15).xlsx",
+         #"CostarExport (16).xlsx", "CostarExport (17).xlsx", "CostarExport (18).xlsx",
+         #"CostarExport (19).xlsx", "CostarExport (20).xlsx", "CostarExport (21).xlsx",
+         #"CostarExport (22).xlsx", "CostarExport (23).xlsx", "CostarExport (24).xlsx",
+         #"CostarExport (25).xlsx", "CostarExport (26).xlsx", "CostarExport (27).xlsx",
+         #"CostarExport (28).xlsx", "CostarExport (29).xlsx", "CostarExport (30).xlsx"]
+dataframes = []
+for file in files:
+  df = pd.read_excel(file)
+  dataframes.append(df)
+
+merged_df = pd.concat(dataframes)
+merged_df.to_excel('FamilyDollarDatabase.xlsx', index=False)
